@@ -30,8 +30,8 @@ public class Main {
         boolean[] arr = new boolean[n + 1];
         arr[0] = arr[1] = true;
         int sqrt = (int) Math.sqrt(n);
-        for (int i = 2; i <= sqrt; i++) {
-            for (int j = 2; j <= n / i; j++) {
+        for (int i = 1; i <= sqrt; i++) {
+            for (int j = 1; j <= n / i; j++) {
                 if (arr[i * j] == true) {
                     continue;
                 } else {
