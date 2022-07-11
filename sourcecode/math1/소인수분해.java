@@ -5,7 +5,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,36 +17,38 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        List<Integer> input = Arrays.stream(br.readLine().split(" ")).map(Integer::parseInt)
-            .collect(Collectors.toList());
+        int N = Integer.parseInt(br.readLine());
 
-        int min = input.get(0);
-        int max = input.get(1);
+        int sqrt = (int)Math.sqrt(N);
 
-        boolean arr[] = new boolean[max + 1];
-        arr[0] = arr[1] = true;
+        boolean[] isPrime = new boolean[N + 1];
+        isPrime[0] = isPrime[1] = true;
 
-        // 에라토스테네스의 체 사용
-        int sqrt = (int) Math.sqrt(max);
         for (int i = 1; i <= sqrt; i++) {
-            for (int j = 1; j <= max/i; j++) {
-                if (arr[i * j] == true) {
+            for (int j = 1; j <= N / i; j++) {
+                if (isPrime[i * j]) {
                     continue;
                 } else {
-                    arr[i * j] = true;
+                    isPrime[i * j] = true;
                 }
             }
         }
 
-        for (int i = min; i <= max; i++) {
-            if (arr[i] == false) {
-                wr.write(i + "\n");
+        while (N > 1) {
+            for (int i = 2; i <= N; i++) {
+                if (isPrime[i]) {
+                    if (N % i == 0) {
+                        wr.write(i + "\n");
+                        N /= i;
+                        break;
+                    }
+                }
             }
         }
-
         wr.flush();
         wr.close();
         br.close();
+
     }
 
 }
