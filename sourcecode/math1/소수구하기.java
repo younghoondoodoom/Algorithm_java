@@ -26,8 +26,8 @@ public class Main {
 
         // 에라토스테네스의 체 사용
         int sqrt = (int) Math.sqrt(max);
-        for (int i = 1; i <= sqrt; i++) {
-            for (int j = 1; j <= max/i; j++) {
+        for (int i = 2; i <= sqrt; i++) {
+            for (int j = 2; j <= max/i; j++) {
                 if (arr[i * j] == true) {
                     continue;
                 } else {
