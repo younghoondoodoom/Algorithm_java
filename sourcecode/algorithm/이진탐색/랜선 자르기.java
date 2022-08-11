@@ -43,7 +43,7 @@ public class Main {
             }
 
             if (count < n) {
-                max = mid - 1;
+                max = mid;
             } else {
                 min = mid + 1;
             }
