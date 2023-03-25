@@ -27,7 +27,7 @@ public class Main {
             .mapToInt(Integer::parseInt)
             .toArray();
 
-        int minimumLength = Integer.MAX_VALUE;
+        int count = 0;
         int sum = 0;
         int end = 0;
         for (int start = 0; start < n; start++) {
@@ -35,17 +35,13 @@ public class Main {
                 sum += numbers[end];
                 end += 1;
             }
-            if (sum >= m) {
-                minimumLength = Math.min(end - start, minimumLength);
+            if (sum == m) {
+                count++;
             }
             sum -= numbers[start];
         }
 
-        if (minimumLength == Integer.MAX_VALUE) {
-            minimumLength = 0;
-        }
-
-        wr.write(minimumLength + "");
+        wr.write(count + "");
         wr.flush();
         wr.close();
     }
